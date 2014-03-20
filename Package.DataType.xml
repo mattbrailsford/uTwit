@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<info>
+		<package>
+			<name>uTwit DataType</name>
+			<version>0.0</version>
+			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+			<url>http://our.umbraco.org/projects/website-utilities/utwit</url>
+			<requirements>
+				<major>4</major>
+				<minor>11</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Matt Brailsford</name>
+			<website>http://theoutfield.net</website>
+		</author>
+		<readme><![CDATA[uTwit DataType contains a Twitter OAuth datatype to provide a simple way to have clients provide the necesary details to connect to the Twitter API.]]></readme>
+	</info>
+
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes>
+		<DataType Name="Twitter OAuth Data Type" Id="3adc3568-4231-4a90-8e5f-327c9537551c" Definition="471ed57e-a54f-4544-8431-8dba3f683cb4">
+		  <PreValues>
+			<PreValue Id="5" Value="{&quot;ConsumerKey&quot;:&quot;&quot;,&quot;ConsumerSecret&quot;:&quot;&quot;,&quot;DataFormat&quot;:1}" />
+		  </PreValues>
+		</DataType>
+	</DataTypes>
+
+	<Actions />
+
+	<control />
+
+	<files />
+
+</umbPackage>

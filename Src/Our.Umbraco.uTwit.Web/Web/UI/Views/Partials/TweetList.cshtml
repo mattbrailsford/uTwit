@@ -1,0 +1,55 @@
+﻿@using Our.Umbraco.uTwit
+@using Our.Umbraco.uTwit.Models
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<IEnumerable<Status>>
+@{
+    // *****************************************************************
+    // uTwit - Tweet List
+    // *****************************************************************
+
+    // !IMPORTANT!
+    // The display of twitter timelines is strictly governed by the 
+    // Developer Display Requirements as defined on the twitter website.
+    // https://dev.twitter.com/terms/display-requirements
+    // It is your responsibility to ensure that these requirements are met.
+    // Failing to meet these requirements could result in the uTwit app
+    // being banned. If you do not intend to follow these requirements
+    // you do so at your own risk, and we ask that you do so using your
+    // own app definition. To create your own twitter app, login to 
+    // http://dev.twitter.com and go to "My Application". From there, click
+    // "Create a new Application" and follow the on screen instructions
+    // (Set access to Read and be sure to set a callback url. It doesn't 
+    // have to be valid, we just found one had to be set for it to work). 
+    // Once created simply copy your Consumer Key and Consumer Secret and 
+    // paste them into fields on the prevalue editor for the Twitter OAuth
+    // data type.
+    
+    // Render the tweets
+    if (Model.Any())
+    {
+        <div class="uTwit tweets">
+        @foreach (var tweet in Model)
+        {
+            // Choose the tweet to display
+            // If it's a retweet, show the original but add "Retweeted by" at the end,
+            // otherwise just show the current tweet.
+            var tweetToDisplay = tweet.IsRetweet ? tweet.RetweetedStatus : tweet;
+
+            <div class="tweet">
+                <a href="@tweetToDisplay.User.PermalinkUrl"><img src="@tweetToDisplay.User.ProfileImageUrl" alt="@tweetToDisplay.User.Name" class="avatar" /></a>
+                <h3><a href="@tweetToDisplay.User.PermalinkUrl">@tweetToDisplay.User.Name <em>@@@tweetToDisplay.User.ScreenName</em></a></h3>
+                <a href="@tweetToDisplay.PermalinkUrl" class="timestamp">@uTwit.FormatDate(tweetToDisplay.CreatedAt)</a>
+                <p class="text">@tweetToDisplay.LinkifiedText<p>
+                @if(tweet.IsRetweet)
+                {
+                    <p class="retweet"><a href="@tweet.User.PermalinkUrl">Retweeted by @@@tweet.User.ScreenName</a></p>
+                }
+                <div class="actions">
+                    <a href="https://twitter.com/intent/tweet?in_reply_to=@tweet.Id" class="reply">Reply</a>
+                    <a href="https://twitter.com/intent/retweet?tweet_id=@tweet.Id" class="retweet">Retweet</a>
+                    <a href="https://twitter.com/intent/favorite?tweet_id=@tweet.Id" class="favorite">Favorite</a>
+                </div>
+            </div>
+        }
+        </div>
+    }
+}

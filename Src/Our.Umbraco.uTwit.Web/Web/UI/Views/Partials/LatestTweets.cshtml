@@ -1,0 +1,41 @@
+﻿@using Our.Umbraco.uTwit
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    // *****************************************************************
+    // uTwit - Latest Tweets
+    // *****************************************************************
+    
+    // Options
+    const string twitterOAuthPropertyAlias = "twitter";
+    const int numberOfTweetsToDisplay = 5;
+    const bool includeReplies = true;
+    const bool includeRetweets = true;
+
+    // !IMPORTANT!
+    // The display of twitter timelines is strictly governed by the 
+    // Developer Display Requirements as defined on the twitter website.
+    // https://dev.twitter.com/terms/display-requirements
+    // It is your responsibility to ensure that these requirements are met.
+    // Failing to meet these requirements could result in the uTwit app
+    // being banned. If you do not intend to follow these requirements
+    // you do so at your own risk, and we ask that you do so using your
+    // own app definition. To create your own twitter app, login to 
+    // http://dev.twitter.com and go to "My Application". From there, click
+    // "Create a new Application" and follow the on screen instructions
+    // (Set access to Read and be sure to set a callback url. It doesn't 
+    // have to be valid, we just found one had to be set for it to work). 
+    // Once created simply copy your Consumer Key and Consumer Secret and 
+    // paste them into fields on the prevalue editor for the Twitter OAuth
+    // data type.
+    
+    // Render the tweets
+    if (Model.Content.HasValue(twitterOAuthPropertyAlias))
+    {
+        var config = uTwit.DeserializeValue(Model.Content.GetPropertyValue<string>(twitterOAuthPropertyAlias));
+        var tweets = uTwit.GetLatestTweets(config, numberOfTweetsToDisplay, includeReplies, includeRetweets);
+        if (tweets != null)
+        {
+            @Html.Partial("TweetList", tweets)
+        }
+    }
+}

@@ -1,0 +1,88 @@
+﻿.uTwit 
+{
+    font-family: Arial, sans-serif;
+    width: 400px;
+}
+
+.tweet,
+.profile
+{
+    border: solid 1px #ccc;
+    margin-bottom: 5px;
+    padding: 10px 10px 10px 70px;
+    position: relative;
+}
+
+.tweet a ,
+.profile a
+{
+    color: #999;
+    text-decoration: none;
+}
+
+.tweet a:hover,
+.profile a:hover
+{
+    color: #333;
+    text-decoration: underline;
+}
+
+.tweet .avatar,
+.profile .avatar
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.tweet h3,
+.profile h3
+{
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.tweet h3 a,
+.profile h3 a
+{
+    color: #333;
+}
+
+.tweet h3 em,
+.profile h3 em
+{
+    color: #999;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.tweet .timestamp
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.tweet .text a 
+{
+    color: #2692d0;
+}
+
+.tweet p,
+.tweet .actions
+{
+    font-size: 12px;
+}
+
+.tweet .actions
+{
+    text-align: right;
+}
+
+.tweet .actions a 
+{
+    margin-left: 10px;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Package">
+
+  <!-- 
+  	****************************************
+  	* IMPORTS
+	****************************************
+  -->
+  <Import Project="$(MSBuildProjectDirectory)\Package.Common.build.xml" />
+
+  <!-- 
+  	****************************************
+  	* PROPERTIES
+	****************************************
+  -->
+  <PropertyGroup>
+    <ProjectName>Our.Umbraco.uTwit.Web</ProjectName>
+	<ProjectDir>$(RootDir)\Src\$(ProjectName)</ProjectDir>
+  </PropertyGroup>
+  
+  <!-- 
+  	****************************************
+  	* TARGETS
+	****************************************
+  -->
+    
+  <!-- PREPAIRE FILES --> 
+  <Target Name="PrepairFiles" DependsOnTargets="Compile">
+    <ItemGroup>
+      <BinFiles Include="$(ProjectDir)\Bin\$(ProjectName).dll" />
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.css" />
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.cshtml" />
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.xslt" />
+    </ItemGroup>
+	<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\$(ProjectName)\bin" />
+    <Copy SourceFiles="@(WebFiles)" DestinationFolder="$(BuildDir)\$(ProjectName)\%(RecursiveDir)" />
+	<Copy SourceFiles="$(RootDir)\Package.Web.xml" DestinationFiles="$(BuildDir)\$(ProjectName)\Package.xml" />
+  </Target>  
+  
+</Project>
