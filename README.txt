@@ -1,8 +1,8 @@
 Description:
 uTwit is a combination of two packages to allow you to easily embedd twitter statuses on your website. 
 
-uTwit.DataType
-The uTwit.DataType package contains a Twitter OAuth datatype to allow you to easily obtain the OAuth tokens required to talk to the Twitter API.
+uTwit.PropertyEditor
+The uTwit.PropertyEditor package contains a Twitter OAuth property editor to allow you to easily obtain the OAuth tokens required to talk to the Twitter API.
 
 uTwit.Web
 The uTwit.Web package contains some helper methods / example code for rendering out Twitter elememts to the page.
@@ -50,7 +50,7 @@ XSLT Extensions
     Formats a DataTime object into the official Twitter date format.
 
 IMPORTANT!
-By default uTwit will install with a demo consumer key / secret to allow you to test it's functionality. It is strongly encouraged that for production use, you go to http://dev.twitter.com and setup your own app and obtain your own consumer key / secrets. You can then enter these into the prevalue editor for the datatype.
+By default uTwit will install with a demo consumer key / secret to allow you to test it's functionality. It is strongly encouraged that for production use, you go to http://dev.twitter.com and setup your own app and obtain your own consumer key / secrets. You can then enter these into the prevalue editor for the property editor
 
 Don't forgot, you'll need to re-authorize any currently configured properties with your new keys.
 

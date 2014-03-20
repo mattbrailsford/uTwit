@@ -5,28 +5,17 @@ using System.Web;
 using System.Xml.XPath;
 using DevDefined.OAuth.Consumer;
 using DevDefined.OAuth.Framework;
-using DevDefined.OAuth.Storage.Basic;
+using DevDefined.OAuth.Storage.Basic; 
 using Our.Umbraco.uTwit.Converters;
-using Our.Umbraco.uTwit.DataType;
 using Our.Umbraco.uTwit.Extensions;
 using Our.Umbraco.uTwit.Helpers;
-using Our.Umbraco.uTwit.Models;
+using Our.Umbraco.uTwit.Models; 
 using umbraco; 
 
 namespace Our.Umbraco.uTwit
 {
     public static class uTwit 
     {
-        /// <summary>
-        /// Deserializes a uTwit JSON value to an actual TwitterOAuthDataValue entity.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public static TwitterOAuthDataValue DeserializeValue(string value)
-        {
-            return value.DeserializeJsonTo<TwitterOAuthDataValue>();
-        }
-
         /// <summary>
         /// Gets the latest tweets.
         /// </summary>
@@ -35,7 +24,7 @@ namespace Our.Umbraco.uTwit
         /// <param name="includeReplies">if set to <c>true</c> include replies.</param>
         /// <param name="includeRetweets">if set to <c>true</c> include retweets.</param>
         /// <returns></returns>
-        public static IEnumerable<Status> GetLatestTweets(TwitterOAuthDataValue config,
+        public static IEnumerable<Status> GetLatestTweets(uTwitModel config,
             int count = 10,
             bool includeReplies = true,
             bool includeRetweets = true)
@@ -56,21 +45,21 @@ namespace Our.Umbraco.uTwit
         /// <param name="includeReplies">if set to <c>true</c> [include replies].</param>
         /// <param name="includeRetweets">if set to <c>true</c> [include retweets].</param>
         /// <returns></returns>
-        public static IEnumerable<Status> GetLatestTweets(TwitterOAuthDataValue config,
+		public static IEnumerable<Status> GetLatestTweets(uTwitModel config,
             string screenName,
             int count = 10,
             bool includeReplies = true,
             bool includeRetweets = true)
         {
-            if(string.IsNullOrWhiteSpace(config.OAuthToken)
-                || string.IsNullOrWhiteSpace(config.OAuthTokenSecret)
+            if(string.IsNullOrWhiteSpace(config.Token)
+                || string.IsNullOrWhiteSpace(config.TokenSecret)
                 || string.IsNullOrWhiteSpace(screenName))
             {
                 return Enumerable.Empty<Status>();
             }
 
-            return GetLatestTweets(config.OAuthToken,
-                config.OAuthTokenSecret,
+            return GetLatestTweets(config.Token,
+                config.TokenSecret,
                 config.ConsumerKey,
                 config.ConsumerSecret,
                 screenName,
@@ -134,12 +123,12 @@ namespace Our.Umbraco.uTwit
         /// <param name="query">The query.</param>
         /// <param name="count">The count.</param>
         /// <returns></returns>
-        public static IEnumerable<Status> SearchTweets(TwitterOAuthDataValue config,
+		public static IEnumerable<Status> SearchTweets(uTwitModel config,
             string query,
             int count = 10)
         {
-            return SearchTweets(config.OAuthToken,
-                config.OAuthTokenSecret,
+            return SearchTweets(config.Token,
+                config.TokenSecret,
                 config.ConsumerKey,
                 config.ConsumerSecret,
                 query,
@@ -195,7 +184,7 @@ namespace Our.Umbraco.uTwit
         /// </summary>
         /// <param name="config">The config.</param>
         /// <returns></returns>
-        public static User GetUser(TwitterOAuthDataValue config)
+		public static User GetUser(uTwitModel config)
         {
             return GetUser(config, config.ScreenName);
         }
@@ -206,11 +195,11 @@ namespace Our.Umbraco.uTwit
         /// <param name="config">The config.</param>
         /// <param name="screenName">Name of the screen.</param>
         /// <returns></returns>
-        public static User GetUser(TwitterOAuthDataValue config,
+		public static User GetUser(uTwitModel config,
             string screenName)
         {
-            return GetUser(config.OAuthToken,
-                config.OAuthTokenSecret,
+            return GetUser(config.Token,
+                config.TokenSecret,
                 config.ConsumerKey,
                 config.ConsumerSecret,
                 screenName);
@@ -244,11 +233,11 @@ namespace Our.Umbraco.uTwit
         /// <param name="config">The config.</param>
         /// <param name="screenNames">The screen names.</param>
         /// <returns></returns>
-        public static IEnumerable<User> GetUsers(TwitterOAuthDataValue config,
+		public static IEnumerable<User> GetUsers(uTwitModel config,
             IEnumerable<string> screenNames)
         {
-            return GetUsers(config.OAuthToken,
-                config.OAuthTokenSecret,
+            return GetUsers(config.Token,
+                config.TokenSecret,
                 config.ConsumerKey,
                 config.ConsumerSecret,
                 screenNames);

@@ -1,4 +1,5 @@
 ﻿@using Our.Umbraco.uTwit
+@using Our.Umbraco.uTwit.Models
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     // *****************************************************************
@@ -30,7 +31,7 @@
     // Render the tweets
     if (Model.Content.HasValue(twitterOAuthPropertyAlias))
     {
-        var config = uTwit.DeserializeValue(Model.Content.GetPropertyValue<string>(twitterOAuthPropertyAlias));
+        var config = Model.Content.GetPropertyValue<uTwitModel>(twitterOAuthPropertyAlias);
         var tweets = uTwit.SearchTweets(config, searchTerm, numberOfTweetsToDisplay);
         if (tweets != null)
         {

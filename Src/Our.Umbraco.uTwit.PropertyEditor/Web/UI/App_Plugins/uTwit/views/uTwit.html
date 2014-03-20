@@ -1,0 +1,20 @@
+﻿<div id="uTwit_{{$id}}" ng-controller="Our.Umbraco.uTwit.PropertyEditors.TwitterAuthorizerController">
+
+    <ul class="unstyled">
+        <li ng-show="model.value">
+            <i></i>
+            <a href="#" prevent-default ng-click="remove()" ng-mouseenter="hover(true)" ng-mouseleave="hover(false)">
+                <i ng-show="hovering" class="icon icon-delete red hover-show"></i>
+                <i ng-show="!hovering" class="icon-user hover-hide"></i> 
+                {{model.value.screenName}}
+            </a>
+        </li>
+        <li ng-show="!model.value">
+            <i class="icon icon-add blue"></i>
+            <a href="#" ng-click="authorize()" prevent-default="">
+                Authorize...
+            </a>
+        </li>
+    </ul>
+
+</div>

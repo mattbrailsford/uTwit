@@ -63,13 +63,7 @@
 		</macro>  
 	</Macros>
 
-	<Actions>
-		<Action runat="install" 
-			alias="addXsltExtension" 
-			assembly="Our.Umbraco.uTwit.Web" 
-			type="Our.Umbraco.uTwit.uTwitXslt" 
-			extensionAlias="uTwit" />
-	</Actions>
+	<Actions />
 
 	<control />
 

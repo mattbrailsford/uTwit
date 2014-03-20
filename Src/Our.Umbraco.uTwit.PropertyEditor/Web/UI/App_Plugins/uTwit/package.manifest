@@ -1,0 +1,41 @@
+﻿{
+    propertyEditors: [
+        {
+            alias: "Our.Umbraco.uTwit",
+            name:  "Twitter OAuth",
+            editor: {
+                view: "~/App_Plugins/uTwit/views/uTwit.html",
+                valueType: "JSON"
+            },
+            prevalues: {
+                fields: [
+                    {
+                        label: "Consumer Key",
+                        description: "Enter the consumer key for the twitter application to authenticate against.",
+                        key: "consumerKey",
+                        view: "textstring",
+                        validation: [
+                            {
+                                type: "Required"
+                            }
+                        ]
+                    },
+                    {
+                        label: "Consumer Secret",
+                        description: "Enter the consumer secret for the twitter application to authenticate against.",
+                        key: "consumerSecret",
+                        view: "textstring",
+                        validation: [
+                            {
+                                type: "Required"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    javascript: [
+        '~/App_Plugins/uTwit/js/uTwit.js'
+    ]
+}
