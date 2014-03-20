@@ -26,10 +26,11 @@
 	<DictionaryItems />
 	<Languages />
 	<DataTypes>
-		<DataType Name="Twitter OAuth" Id="3adc3568-4231-4a90-8e5f-327c9537551c" Definition="471ed57e-a54f-4544-8431-8dba3f683cb4">
+		<DataType Name="Twitter OAuth" Id="Our.Umbraco.uTwit" Definition="41124ad9-063b-48ab-9b34-4db982606348" DatabaseType="Ntext">
 		  <PreValues>
-			<PreValue Id="5" Value="{&quot;ConsumerKey&quot;:&quot;&quot;,&quot;ConsumerSecret&quot;:&quot;&quot;,&quot;DataFormat&quot;:1}" />
-		  </PreValues>
+        		<PreValue Id="31" Value="" Alias="consumerKey" />
+        		<PreValue Id="32" Value="" Alias="consumerSecret" />
+      		  </PreValues>
 		</DataType>
 	</DataTypes>
 
