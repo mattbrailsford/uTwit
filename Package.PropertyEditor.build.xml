@@ -29,7 +29,10 @@
     <ItemGroup>
       <BinFiles Include="$(ProjectDir)\Bin\$(ProjectName).dll" />
       <WebFiles Include="$(ProjectDir)\Web\UI\**\*.aspx" />
-      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.resx" />
+      <!-- WebFiles Include="$(ProjectDir)\Web\UI\**\*.resx" -->
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.js" />
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.html" />
+      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.manifest" />
       <PackageFile Include="$(RootDir)\Package.xml" /> 
     </ItemGroup>
 	<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\$(ProjectName)\bin" />

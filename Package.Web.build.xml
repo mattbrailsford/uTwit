@@ -30,7 +30,6 @@
       <BinFiles Include="$(ProjectDir)\Bin\$(ProjectName).dll" />
       <WebFiles Include="$(ProjectDir)\Web\UI\**\*.css" />
       <WebFiles Include="$(ProjectDir)\Web\UI\**\*.cshtml" />
-      <WebFiles Include="$(ProjectDir)\Web\UI\**\*.xslt" />
     </ItemGroup>
 	<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\$(ProjectName)\bin" />
     <Copy SourceFiles="@(WebFiles)" DestinationFolder="$(BuildDir)\$(ProjectName)\%(RecursiveDir)" />
