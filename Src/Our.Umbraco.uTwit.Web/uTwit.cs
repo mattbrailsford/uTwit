@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,20 +10,62 @@ using Our.Umbraco.uTwit.Converters;
 using Our.Umbraco.uTwit.Extensions;
 using Our.Umbraco.uTwit.Helpers;
 using Our.Umbraco.uTwit.Models; 
-using umbraco; 
+
 
 namespace Our.Umbraco.uTwit
 {
     public static class uTwit 
     {
-        /// <summary>
-        /// Gets the latest tweets.
-        /// </summary>
-        /// <param name="config">The config.</param>
-        /// <param name="count">The count.</param>
-        /// <param name="includeReplies">if set to <c>true</c> include replies.</param>
-        /// <param name="includeRetweets">if set to <c>true</c> include retweets.</param>
-        /// <returns></returns>
+
+        public static IEnumerable<Status> GetHomeTimeline(uTwitModel config,
+            int count = 10,
+            bool includeReplies = true,
+            bool includeRetweets = true)
+        {
+            return GetHomeTimeline(config.Token,
+                config.TokenSecret,
+                config.ConsumerKey,
+                config.ConsumerSecret,
+                config.ScreenName,
+                count);
+        }
+
+
+        public static IEnumerable<Status> GetHomeTimeline(string oauthToken,
+           string oauthTokenSecret,
+           string consumerKey,
+           string consumerSecret,
+           string screenName,
+           int count = 10)
+        {
+            if (string.IsNullOrWhiteSpace(consumerKey))
+                consumerKey = Constants.ConsumerKey;
+
+            if (string.IsNullOrWhiteSpace(consumerSecret))
+                consumerSecret = Constants.ConsumerSecret;
+
+            var session = CreateOAuthSession(consumerKey,
+                consumerSecret,
+                oauthToken,
+                oauthTokenSecret);
+
+            var url = string.Format("https://api.twitter.com/1.1/statuses/home_timeline.json?screen_name={0}&count={1}",
+                screenName,
+                count);
+
+            return session.Request()
+                .Get()
+                .ForUrl(url)
+                .ToString()
+                .DeserializeJsonTo<List<Status>>(new[]
+                {
+                    new TwitterTypeConverter()
+                });
+        }
+
+
+
+
         public static IEnumerable<Status> GetLatestTweets(uTwitModel config,
             int count = 10,
             bool includeReplies = true,
@@ -35,6 +77,8 @@ namespace Our.Umbraco.uTwit
                 includeReplies,
                 includeRetweets);
         }
+
+
 
         /// <summary>
         /// Gets the latest tweets.
