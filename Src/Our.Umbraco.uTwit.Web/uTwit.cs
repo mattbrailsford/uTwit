@@ -131,9 +131,7 @@ namespace Our.Umbraco.uTwit
         /// <returns></returns>
         public static IEnumerable<Status> GetHomeTimeline(uTwitModel config,
             string screenName,
-            int count = 10,
-            bool includeReplies = true,
-            bool includeRetweets = true)
+            int count = 10)
         {
             if (string.IsNullOrWhiteSpace(config.Token)
                 || string.IsNullOrWhiteSpace(config.TokenSecret)
@@ -169,9 +167,7 @@ namespace Our.Umbraco.uTwit
             string consumerKey,
             string consumerSecret,
             string screenName,
-            int count = 10,
-            bool includeReplies = true,
-            bool includeRetweets = true)
+            int count = 10)
         {
             if (string.IsNullOrWhiteSpace(consumerKey))
                 consumerKey = Constants.ConsumerKey;
