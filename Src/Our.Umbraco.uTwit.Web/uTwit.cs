@@ -142,7 +142,7 @@ namespace Our.Umbraco.uTwit
                 return Enumerable.Empty<Status>();
             }
 
-            return GetLatestTweets(config.Token,
+            return GetHomeTimeline(config.Token,
                 config.TokenSecret,
                 config.ConsumerKey,
                 config.ConsumerSecret,
