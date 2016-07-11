@@ -76,6 +76,7 @@
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\HashtagEntity.cs" />
+    <Compile Include="Models\MediaEntity.cs" />
     <Compile Include="Models\SearchResults.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\UrlEntity.cs" />
