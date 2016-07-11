@@ -17,5 +17,8 @@ namespace Our.Umbraco.uTwit.Models
 
         [DataMember]
         public IEnumerable<HashtagEntity> Hashtags { get; internal set; }
+
+        [DataMember]
+        public IEnumerable<MediaEntity> Media { get; internal set; }
     }
 }
